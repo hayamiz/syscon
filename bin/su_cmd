@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -z "$SU_PASSWORD" ]; then
+    echo "Usage: export SU_PASSWORD=...; su_cmd [ARGS]"
+    exit 1
+fi
+
+bindir=$(dirname $(readlink -f $0))
+export LANG=C
+
+if lsb_release -d | grep Ubuntu > /dev/null; then
+    echo $SU_PASSWORD | sudo -S "$@"
+else
+    $bindir/su_cmd.expect "$@"
+fi

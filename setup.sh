@@ -10,6 +10,11 @@ export SYSCON_ROOT=$(dirname $(readlink -f $0))
 export SYSCON_BIN="$SYSCON_ROOT/bin"
 export SYSCON_RECIPE="$SYSCON_ROOT/recipe"
 export SYSCON_INCLUDE="$SYSCON_ROOT/include"
+export SYSCON_USER=$USER
+export SYSCON_TARGET=OK.$(hostname -s)
+
+export SU_CMD=$SYSCON_BIN/su_cmd
+export FINISH="if [ \$\$UID = \"0\" ]; then su $SYSCON_USER -c \"touch $SYSCON_TARGET\"; else touch $SYSCON_TARGET; fi;"
 
 recipes=(`ls $SYSCON_ROOT/recipe`)
 
@@ -46,10 +51,20 @@ done
 selected_recipe=${recipes[$selected_idx]}
 echo "$selected_recipe selected."
 
-echo "root password: "
-trap "stty echo" 0
-stty -echo
-export SU_PASSWORD=$(read)
-stty echo
+if [ -z "$SU_PASSWORD" ]; then
+    echo -n "root password: "
+    trap "stty echo" 0
+    stty -echo
+    export SU_PASSWORD=$(read)
+    stty echo
+fi
 
-make -C "$SYSCON_RECIPE/$selected_recipe"
+recipe_dir="$SYSCON_RECIPE/$selected_recipe"
+case "$1" in
+    clean)
+	make -C $recipe_dir clean
+	;;
+    *)
+	make -C $recipe_dir
+	;;
+esac

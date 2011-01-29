@@ -1,4 +1,2 @@
 
-include commonvars.mk
-
-$(SYSCON_TARGET): $(ls | grep -v OK)
+$(SYSCON_TARGET): $(shell ls | grep -v OK)

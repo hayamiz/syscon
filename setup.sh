@@ -12,6 +12,7 @@ export SYSCON_RECIPE="$SYSCON_ROOT/recipe"
 export SYSCON_INCLUDE="$SYSCON_ROOT/include"
 export SYSCON_USER=$USER
 export SYSCON_TARGET=OK.$(hostname -s)
+export SYSCON_PREFIX=${HOME}/$(hostname -s)/usr
 
 export SU_CMD=$SYSCON_BIN/su_cmd
 export FINISH="if [ \$\$UID = \"0\" ]; then su $SYSCON_USER -c \"touch $SYSCON_TARGET\"; else touch $SYSCON_TARGET; fi;"
@@ -55,7 +56,8 @@ if [ -z "$SU_PASSWORD" ]; then
     echo -n "root password: "
     trap "stty echo" 0
     stty -echo
-    export SU_PASSWORD=$(read)
+    read input
+    export SU_PASSWORD=$input
     stty echo
 fi
 

@@ -16,4 +16,5 @@ $(SYSCON_TARGET): $(TARGET_DEPS) $(SUBTARGETS)
 	fi
 
 clean:
+	! test -z "$(SYSCON_TARGET)"
 	rm -f $$(find . -name "$(SYSCON_TARGET)")

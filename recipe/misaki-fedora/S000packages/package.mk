@@ -4,7 +4,6 @@ include $(SYSCON_INCLUDE)/common.mk
 install_packages :=				\
 	redhat-lsb				\
 	ethtool					\
-	gnuplot					\
 	kernel-headers				\
 	trousers				\
 	zsh					\
@@ -12,8 +11,6 @@ install_packages :=				\
 	yum-utils				\
 	numactl-devel				\
 	libaio-devel				\
-	screen					\
-	mutt					\
 	fipscheck				\
 	keyutils				\
 	glibc-devel

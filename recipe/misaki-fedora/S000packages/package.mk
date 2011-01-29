@@ -3,10 +3,23 @@ include $(SYSCON_INCLUDE)/common.mk
 
 install_packages :=				\
 	ethtool					\
-	gnuplot
+	gnuplot					\
+	kernel-headers				\
+	trousers				\
+	zsh					\
+	sysstat					\
+	yum-utils				\
+	numactl-devel				\
+	libaio-devel				\
+	screen					\
+	mutt					\
+	fipscheck				\
+	keyutils				\
+	glibc-devel
 
-erase_packages := \
-	aspell
+erase_packages :=				\
+	aspell					\
+	cpuspeed
 
 $(SYSCON_TARGET):
 	yes | yum install $(install_packages)

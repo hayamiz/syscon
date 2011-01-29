@@ -12,12 +12,12 @@ if {$x == ""} {
   puts "su_cmd: set SU_PASSWORD environment variable"; exit 1
 }
 set pw [lindex $x 1]
-set timeout 2
+set timeout 5
 # do not echo "Password:" prompt
 log_user 0 
 ## exec comand without echoing
 spawn -noecho su -c "$argv"
-#spawn su -c "$argv"
+# spawn su -c "$argv"
 # wait for "Password:" prompt
 expect {
   timeout { puts "su_cmd: no password prompt"; exit 1 }

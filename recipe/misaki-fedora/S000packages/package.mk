@@ -2,6 +2,7 @@
 include $(SYSCON_INCLUDE)/common.mk
 
 install_packages :=				\
+	redhat-lsb				\
 	ethtool					\
 	gnuplot					\
 	kernel-headers				\

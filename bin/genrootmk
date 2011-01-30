@@ -33,6 +33,9 @@ clean:
 	! test -z "\$(SYSCON_TARGET)"
 	rm -f \$\$(find . -name "\$(SYSCON_TARGET)")
 
+\$(SYSCON_TARGET): ${tasks[$((${#tasks[*]}-1))]}/\$(SYSCON_TARGET)
+	touch $@
+
 EOF
 
 # generate rules

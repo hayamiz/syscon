@@ -62,6 +62,11 @@ if [ -z "$SU_PASSWORD" ]; then
 fi
 
 recipe_dir="$SYSCON_RECIPE/$selected_recipe"
+
+$SYSCON_BIN/genrootmk $recipe_dir
+
+exit 0
+
 case "$1" in
     clean)
 	make -C $recipe_dir clean

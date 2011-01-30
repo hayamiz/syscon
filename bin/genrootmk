@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# This script makes root Makefile (/syscon/recipe/RECIPE/Makefile) for specified recipe
+
+if [ $# -lt 1 ];then
+    echo "Usage: genrootmk RECIPE_DIR"
+    exit 1
+fi
+recipe_dir=$(readlink -f $1)
+if ! [ -d "$recipe_dir" ]; then
+    echo "No such directory: $1"
+    exit 1
+fi
+
+tasks=($(find $recipe_dir -maxdepth 2 -mindepth 2 -name "*.mk"|xargs -n1 dirname|xargs -n1 basename|sort|uniq))
+
+if test ${#tasks[*]} -lt 1; then
+    echo "No tasks defined"
+    exit 1
+fi
+
+tempmkfile=$(mktemp)
+
+# default target
+cat > $tempmkfile <<EOF
+.PHONY: all envcheck clean
+all: \$(SYSCON_TARGET)
+
+envcheck:
+	! test -z "\$\$SYSCON_ROOT"
+
+clean:
+	! test -z "\$(SYSCON_TARGET)"
+	rm -f \$\$(find . -name "\$(SYSCON_TARGET)")
+
+EOF
+
+# generate rules
+for idx in $(seq 0 $((${#tasks[*]}-1))); do
+    if [ $idx -gt 0 ]; then
+	cat >> $tempmkfile <<EOF
+${tasks[$idx]}/\$(SYSCON_TARGET): ${tasks[$((idx-1))]}/\$(SYSCON_TARGET)
+EOF
+    else
+	cat >> $tempmkfile <<EOF
+${tasks[$idx]}/\$(SYSCON_TARGET): envcheck
+EOF
+    fi
+    case ${tasks[$idx]} in
+	S*)
+	    cat >> $tempmkfile <<EOF
+	\$(SU_CMD) make -C ${tasks[$idx]} -f \$\$(ls ${tasks[$idx]}/*.mk|sort|head -1|xargs -n1 basename)
+
+EOF
+	;;
+	U*)
+	    cat >> $tempmkfile <<EOF
+	make -C ${tasks[$idx]} -f \$\$(ls ${tasks[$idx]}/*.mk|sort|head -1|xargs -n1 basename)
+
+EOF
+	;;
+    esac
+done
+
+# install makefile
+cp $tempmkfile $recipe_dir/Makefile

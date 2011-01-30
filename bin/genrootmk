@@ -40,13 +40,15 @@ EOF
 
 # generate rules
 for idx in $(seq 0 $((${#tasks[*]}-1))); do
+    deps=$(ls $recipe_dir/${tasks[$idx]}/*.mk|xargs -n1 basename)
+    deps=$(echo $deps|while read dep; do echo ${tasks[$idx]}/$dep; done)
     if [ $idx -gt 0 ]; then
 	cat >> $tempmkfile <<EOF
-${tasks[$idx]}/\$(SYSCON_TARGET): ${tasks[$((idx-1))]}/\$(SYSCON_TARGET)
+${tasks[$idx]}/\$(SYSCON_TARGET): $deps ${tasks[$((idx-1))]}/\$(SYSCON_TARGET)
 EOF
     else
 	cat >> $tempmkfile <<EOF
-${tasks[$idx]}/\$(SYSCON_TARGET): envcheck
+${tasks[$idx]}/\$(SYSCON_TARGET): $deps envcheck
 EOF
     fi
     case ${tasks[$idx]} in

@@ -27,7 +27,7 @@ fi
 idx=0
 default_idx=
 echo "== Recipes =="
-for recipe in $recipes; do
+for recipe in ${recipes[@]}; do
     echo "$idx: $recipe"
     if [ "$recipe" = $(hostname -s) ]; then
 	default_idx=$idx

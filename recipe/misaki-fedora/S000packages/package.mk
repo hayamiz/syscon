@@ -13,6 +13,9 @@ install_packages :=				\
 	libaio-devel				\
 	fipscheck				\
 	keyutils				\
+	systemtap				\
+	kernel-devel				\
+	kernel-debuginfo			\
 	glibc-devel
 
 erase_packages :=				\
@@ -20,6 +23,9 @@ erase_packages :=				\
 	cpuspeed
 
 $(SYSCON_TARGET):
-	yes | yum install $(install_packages)
-	yes | yum erase $(erase_packages)
+	echo "#!/bin/bash" > /tmp/yum.sh
+	echo yum -q -y install $(install_packages) >> /tmp/yum.sh
+	echo yum -q -y erase $(erase_packages) >> /tmp/yum.sh
+	bash /tmp/yum.sh
+	stap-prep
 	$(FINISH)

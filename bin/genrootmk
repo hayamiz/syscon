@@ -55,8 +55,11 @@ EOF
 	S*)
 	    cat >> $tempmkfile <<EOF
 	\$(SU_CMD) make -C ${tasks[$idx]} -f \$\$(ls ${tasks[$idx]}/*.mk|sort|head -1|xargs -n1 basename)
-
 EOF
+	for dep in $deps; do
+	    echo "	test ${tasks[$idx]}/\$(SYSCON_TARGET) -nt $dep" >> $tempmkfile
+	done
+	echo >> $tempmkfile
 	;;
 	U*)
 	    cat >> $tempmkfile <<EOF

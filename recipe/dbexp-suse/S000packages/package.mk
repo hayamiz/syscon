@@ -2,19 +2,19 @@
 include $(SYSCON_INCLUDE)/common.mk
 
 install_packages :=				\
-	redhat-lsb				\
 	ethtool					\
-	kernel-headers				\
+	kernel-source				\
+	kernel-desktop-devel			\
+	kernel-desktop-debuginfo		\
+	kernel-desktop-debugsource		\
+	kernel-desktop-base-debuginfo		\
 	trousers				\
 	zsh					\
 	sysstat					\
-	numactl-devel				\
+	libnuma-devel				\
 	libaio-devel				\
-	fipscheck				\
 	keyutils				\
 	systemtap				\
-	kernel-devel				\
-	kernel-debuginfo			\
 	glibc-devel
 
 erase_packages :=				\
@@ -22,7 +22,7 @@ erase_packages :=				\
 	cpuspeed
 
 $(SYSCON_TARGET):
-	echo "#!/bin/bash" > /tmp/yum.sh
+	zypper modifyrepo --enable repo-debug
 	zypper -y install $(install_packages)
 	zypper -y remove $(erase_packages)
 	$(FINISH)

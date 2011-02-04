@@ -3,11 +3,11 @@ include $(SYSCON_INCLUDE)/common.mk
 
 services =					\
 	auditd					\
-	avahi-daemon				\
-	cgconfig				\
-	crond					\
+	cron					\
 	firstboot				\
-	tcsd
+	canna					\
+	cifs
+
 
 $(SYSCON_TARGET):
 	for serv in $(services); do \

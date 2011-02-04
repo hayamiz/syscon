@@ -14,7 +14,7 @@ $(SYSCON_TARGET):
 	./config --prefix=$(SYSCON_PREFIX) \
 	         --with-zlib-include=$(SYSCON_PREFIX)/include \
 	         --with-zlib-lib=$(SYSCON_PREFIX)/lib threads shared zlib && \
-	make -j 8 && \
+	make && \
 	make install
 	$(FINISH)
 

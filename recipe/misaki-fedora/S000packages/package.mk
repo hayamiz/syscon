@@ -14,6 +14,8 @@ install_packages :=				\
 	fipscheck				\
 	keyutils				\
 	systemtap				\
+	systemtap-sdt-devel			\
+	systemtap-runtime			\
 	kernel-devel				\
 	kernel-debuginfo			\
 	glibc-devel

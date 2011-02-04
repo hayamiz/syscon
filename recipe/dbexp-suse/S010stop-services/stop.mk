@@ -4,7 +4,6 @@ include $(SYSCON_INCLUDE)/common.mk
 services =					\
 	auditd					\
 	cron					\
-	firstboot				\
 	canna					\
 	cifs
 

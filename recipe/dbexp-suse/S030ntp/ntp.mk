@@ -8,5 +8,5 @@ $(SYSCON_TARGET):
 	if ! grep yebis.tkl.iis.u-tokyo.ac.jp /etc/ntp.conf; then \
 	  echo server yebis.tkl.iis.u-tokyo.ac.jp >> /etc/ntp.conf; \
 	fi
-	service ntpd restart
+	service ntp restart
 	$(FINISH)

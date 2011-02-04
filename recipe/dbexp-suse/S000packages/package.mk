@@ -15,14 +15,17 @@ install_packages :=				\
 	libaio-devel				\
 	keyutils				\
 	systemtap				\
+	m4					\
+	gcc					\
+	gcc-c++					\
 	glibc-devel
 
-erase_packages :=				\
-	aspell					\
-	cpuspeed
+/tmp/zypper.sh: package.mk
+	echo "#!/bin/bash" > $@
+	echo "zypper install -t pattern devel_C_C++" >> $@
+	echo "zypper modifyrepo --enable repo-debug" >> $@
+	echo "yes | zypper install $(install_packages)" >> $@
+	false
 
-$(SYSCON_TARGET):
-	zypper modifyrepo --enable repo-debug
-	zypper -y install $(install_packages)
-	zypper -y remove $(erase_packages)
+$(SYSCON_TARGET): /tmp/zypper.sh
 	$(FINISH)

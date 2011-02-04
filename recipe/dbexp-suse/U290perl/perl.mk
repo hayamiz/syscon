@@ -6,7 +6,7 @@ $(SYSCON_TARGET):
 	rm -rf perl-* &&\
 	tar xf $(shell pwd)/perl-*.tar.gz && \
 	cd perl-* && \
-	sh Configure -de -Dprefix=$(SYSCON_PREFIX) \
+	sh Configure -de -Dprefix=$(SYSCON_PREFIX) -Dnoextensions=ODBM_File \
 	  -Accflags="-g -I$(SYSCON_PREFIX)/include" \
 	  -Aldflags="-L$(SYSCON_PREFIX)/lib" && \
 	make -j8 && \

@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # Check pre-required tools
+if ! which make > /dev/null; then # required by su_cmd
+    echo "Install 'make' command first"
+    exit 1
+fi
 if ! which expect > /dev/null; then # required by su_cmd
     echo "Install 'expect' command first"
     exit 1

@@ -4,10 +4,13 @@ include $(SYSCON_INCLUDE)/common.mk
 install_packages :=				\
 	ethtool					\
 	kernel-source				\
-	kernel-desktop-devel			\
-	kernel-desktop-debuginfo		\
-	kernel-desktop-debugsource		\
-	kernel-desktop-base-debuginfo		\
+	kernel-default				\
+	kernel-default-base			\
+	kernel-default-devel			\
+	kernel-default-debuginfo		\
+	kernel-default-debugsource		\
+	kernel-default-base-debuginfo		\
+	kernel-default-devel-debuginfo		\
 	trousers				\
 	zsh					\
 	sysstat					\
@@ -18,6 +21,7 @@ install_packages :=				\
 	m4					\
 	gcc					\
 	gcc-c++					\
+	cpufrequtils	\
 	glibc-devel
 
 /tmp/zypper.sh: package.mk

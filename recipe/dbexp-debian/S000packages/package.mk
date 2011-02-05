@@ -15,6 +15,7 @@ install_packages :=				\
 	build-essential				\
 	ntp \
 	iptables \
+	rsync \
 	cpufrequtils
 
 /tmp/apt.sh: package.mk

@@ -2,11 +2,11 @@
 include $(SYSCON_INCLUDE)/common.mk
 
 services =					\
-	auditd					\
-	cron					\
-	canna					\
-	cifs
+	cron
 
 
 $(SYSCON_TARGET):
+	for serv in $(services); do \
+	  update-rc.d $$serv disable; \
+	done
 	$(FINISH)

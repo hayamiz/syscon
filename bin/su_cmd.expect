@@ -12,7 +12,7 @@ if {$x == ""} {
   puts "su_cmd: set SU_PASSWORD environment variable"; exit 1
 }
 set pw [lindex $x 1]
-set timeout 5
+set timeout 600
 # do not echo "Password:" prompt
 log_user 0 
 ## exec comand without echoing

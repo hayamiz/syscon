@@ -19,7 +19,7 @@ export SYSCON_TARGET=OK.$(hostname -s)
 export SYSCON_PREFIX=${HOME}/$(hostname -s)/usr
 
 export SU_CMD=$SYSCON_BIN/su_cmd
-export FINISH="if [ \$\$UID = \"0\" ]; then su $SYSCON_USER -c \"touch $SYSCON_TARGET\"; else touch $SYSCON_TARGET; fi;"
+export FINISH="if ! [ \"$SYSCON_USER\" = \"\$\$(whoami)\" ]; then su $SYSCON_USER -c \"touch $SYSCON_TARGET\"; else touch $SYSCON_TARGET; fi;"
 
 recipes=(`ls $SYSCON_ROOT/recipe`)
 

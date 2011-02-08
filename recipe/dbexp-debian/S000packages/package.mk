@@ -16,6 +16,8 @@ install_packages :=				\
 	ntp \
 	iptables \
 	rsync \
+	gettext \
+	cmake \
 	cpufrequtils
 
 /tmp/apt.sh: package.mk

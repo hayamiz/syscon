@@ -34,7 +34,7 @@ clean:
 	rm -f \$\$(find . -name "\$(SYSCON_TARGET)")
 
 \$(SYSCON_TARGET): ${tasks[$((${#tasks[*]}-1))]}/\$(SYSCON_TARGET)
-	touch $@
+	touch \$@
 
 EOF
 

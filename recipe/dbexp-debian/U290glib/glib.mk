@@ -1,7 +1,7 @@
 
 include $(SYSCON_INCLUDE)/common.mk
 
-OPTIONS = --enable-gc-friendly --disable-mem-pools --enable-threads CFLAGS='-g -O0'
+OPTIONS = --enable-gc-friendly --disable-mem-pools --enable-threads CFLAGS='-g -O2'
 $(SYSCON_TARGET):
 	cd /tmp && \
 	rm -rf glib-* && \

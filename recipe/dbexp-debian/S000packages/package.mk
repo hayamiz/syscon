@@ -4,6 +4,7 @@ include $(SYSCON_INCLUDE)/common.mk
 install_packages :=				\
 	linux-headers-$(shell uname -r)		\
 	linux-image-$(shell uname -r)-dbg	\
+	linux-tools				\
 	systemtap				\
 	ethtool					\
 	trousers				\
@@ -13,12 +14,15 @@ install_packages :=				\
 	libaio-dev				\
 	keyutils				\
 	build-essential				\
-	ntp \
-	iptables \
-	rsync \
-	gettext \
-	cmake \
-	cpufrequtils
+	ntp					\
+	iptables				\
+	rsync					\
+	gettext					\
+	cmake					\
+	cpufrequtils				\
+	oprofile				\
+	numactl					\
+	libncurses5-dev
 
 /tmp/apt.sh: package.mk
 	echo "#!/bin/bash" > $@

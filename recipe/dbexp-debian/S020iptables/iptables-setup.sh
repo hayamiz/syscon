@@ -13,7 +13,8 @@ iptables -A INPUT -j ACCEPT -m state --state ESTABLISHED,RELATED
 
 # allow incoming packets
 iptables -A INPUT -j ACCEPT -p icmp # ping
-iptables -A INPUT -j ACCEPT -p tcp --source 157.82.157.0/25 --dport 22 -m state --state NEW # ssh
+iptables -A INPUT -j ACCEPT -p tcp --dport 22 -m state --state NEW # ssh
+iptables -A INPUT -j ACCEPT -p tcp --source 157.82.157.0/25 -m state --state NEW # ssh
 
 # drop
 iptables -P INPUT DROP

@@ -7,7 +7,7 @@ if ! which make > /dev/null; then # required by su_cmd
 fi
 if ! which expect > /dev/null; then # required by su_cmd
     echo "Install 'expect' command first"
-    exit 1
+    # exit 1
 fi
 
 export SYSCON_ROOT=$(dirname $(readlink -f $0))
@@ -54,9 +54,10 @@ while [ -z "$selected_idx" ]; do
     fi
 done
 selected_recipe=${recipes[$selected_idx]}
+recipe_dir="$SYSCON_RECIPE/$selected_recipe"
 echo "$selected_recipe selected."
 
-if [ -z "$SU_PASSWORD" ]; then
+if [ -z "$SU_PASSWORD" ] && (ls "$recipe_dir" | grep "^S"); then
     echo -n "root password: "
     trap "stty echo" 0
     stty -echo
@@ -65,7 +66,6 @@ if [ -z "$SU_PASSWORD" ]; then
     stty echo
 fi
 
-recipe_dir="$SYSCON_RECIPE/$selected_recipe"
 
 $SYSCON_BIN/genrootmk $recipe_dir
 

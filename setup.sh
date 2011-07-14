@@ -19,6 +19,7 @@ export SYSCON_TARGET=OK.$(hostname -s)
 export SYSCON_PREFIX=${HOME}/$(hostname -s)/usr
 
 export PATH=$SYSCON_PREFIX/bin:$PATH
+export LD_LIBRARY_PATH=$SYSCON_PREFIX/lib:$LD_LIBRARY_PATH
 
 export SU_CMD=$SYSCON_BIN/su_cmd
 export FINISH="if ! [ \"$SYSCON_USER\" = \"\$\$(whoami)\" ]; then su $SYSCON_USER -c \"touch $SYSCON_TARGET\"; else touch $SYSCON_TARGET; fi;"

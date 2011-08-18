@@ -17,6 +17,10 @@ export SYSCON_INCLUDE="$SYSCON_ROOT/include"
 export SYSCON_USER=$USER
 export SYSCON_TARGET=OK.$(hostname -s)
 export SYSCON_PREFIX=${HOME}/$(hostname -s)/usr
+export SYSCON_BUILDDIR="$SYSCON_ROOT/build/$(hostname -s)"
+if ! [ -d "$SYSCON_BUILDDIR" ]; then
+    mkdir -p "$SYSCON_BUILDDIR"
+fi
 
 export PATH=$SYSCON_PREFIX/bin:$PATH
 export LD_LIBRARY_PATH=$SYSCON_PREFIX/lib:$LD_LIBRARY_PATH

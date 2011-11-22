@@ -22,8 +22,7 @@ install_packages :=				\
 	cpufrequtils				\
 	oprofile				\
 	numactl					\
-	libncurses5-dev				\
-	postfix
+	libncurses5-dev
 
 /tmp/apt.sh: package.mk
 	echo "#!/bin/bash" > $@

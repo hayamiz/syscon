@@ -9,7 +9,7 @@ $(SYSCON_TARGET):
 	./configure --prefix=$(SYSCON_PREFIX) \
 	            --enable-pthread --disable-install-doc \
 	            CFLAGS="-g -I$(SYSCON_PREFIX)/include" LDFLAGS="-L$(SYSCON_PREFIX)/lib" && \
-	make && \
+	make -j16 && \
 	make install
 	$(FINISH)
 

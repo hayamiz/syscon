@@ -6,7 +6,7 @@ $(SYSCON_TARGET):
 	rm -rf cpufrequtils-* &&\
 	tar zxf $(shell pwd)/cpufrequtils-*.tar.gz && \
 	cd cpufrequtils-* && \
-	make && \
+	make -j16 && \
 	DESTDIR="$(SYSCON_PREFIX)/../" make install
 	$(FINISH)
 

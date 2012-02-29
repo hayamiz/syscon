@@ -76,11 +76,13 @@ fi
 
 $SYSCON_BIN/genrootmk $recipe_dir
 
+NR_CPU=`cat /proc/cpuinfo|grep processor|wc -l`
+
 case "$1" in
     clean)
 	make -C $recipe_dir clean
 	;;
     *)
-	make -C $recipe_dir
+	make -C $recipe_dir -j $NR_CPU
 	;;
 esac

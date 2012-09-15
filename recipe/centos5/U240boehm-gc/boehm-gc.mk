@@ -2,7 +2,7 @@
 include $(SYSCON_INCLUDE)/common.mk
 
 $(SYSCON_TARGET):
-	cd /tmp && \
+	cd $(SYSCON_BUILDDIR) && \
 	rm -rf gc-* &&\
 	tar zxf $(shell pwd)/gc-*.tar.gz && \
 	cd gc-* && \

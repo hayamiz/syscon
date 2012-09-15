@@ -2,7 +2,7 @@
 include $(SYSCON_INCLUDE)/common.mk
 
 $(SYSCON_TARGET):
-	cd /tmp && \
+	cd $(SYSCON_BUILDDIR) && \
 	rm -rf intltool-* &&\
 	tar xf $(shell pwd)/intltool-*.tar.bz2 && \
 	cd intltool-* && \

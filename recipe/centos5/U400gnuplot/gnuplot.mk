@@ -2,7 +2,7 @@
 include $(SYSCON_INCLUDE)/common.mk
 
 $(SYSCON_TARGET):
-	cd /tmp && \
+	cd $(SYSCON_BUILDDIR) && \
 	rm -rf gnuplot-* && \
 	tar zxf $(shell pwd)/gnuplot-*.tar.gz && \
 	cd gnuplot-* && \

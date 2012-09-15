@@ -2,7 +2,7 @@
 include $(SYSCON_INCLUDE)/common.mk
 
 $(SYSCON_TARGET):
-	cd /tmp && \
+	cd $(SYSCON_BUILDDIR) && \
 	rm -rf blktrace && \
 	git clone git://git.kernel.org/pub/scm/linux/kernel/git/axboe/blktrace.git && \
 	cd blktrace && \

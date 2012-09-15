@@ -5,7 +5,7 @@ patches := $(shell find $(shell pwd) -name "*.patch")
 
 $(SYSCON_TARGET):
 	echo $(patches)
-	cd /tmp && \
+	cd $(SYSCON_BUILDDIR) && \
 	rm -rf screen-* &&\
 	tar xf $(shell pwd)/screen-*.tar.gz && \
 	cd screen-* && \

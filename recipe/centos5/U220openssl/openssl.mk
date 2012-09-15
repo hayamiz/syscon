@@ -2,7 +2,7 @@
 include $(SYSCON_INCLUDE)/common.mk
 
 $(SYSCON_TARGET):
-	cd /tmp && \
+	cd $(SYSCON_BUILDDIR) && \
 	rm -rf openssl-* && \
 	tar zxf $(shell pwd)/openssl-*.tar.gz && \
 	cd openssl-* && \

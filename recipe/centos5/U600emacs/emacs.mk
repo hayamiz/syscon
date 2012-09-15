@@ -1,13 +1,14 @@
 include $(SYSCON_INCLUDE)/common.mk
 
 $(SYSCON_TARGET):
-	cd /tmp&& \
+	cd $(SYSCON_BUILDDIR) && \
 	rm -rf emacs-*.* && \
 	tar zxf $(shell pwd)/emacs-*.*.tar.gz&& \
 	cd emacs-*.*&& \
 	./configure --prefix=$(SYSCON_PREFIX) \
-	  --with-x=no --with-xpm=no --with-jpeg=no \
-	 --with-png=no --with-gif=no --with-tiff=no &&\
+	  --without-selinux \
+	  --with-x=no --without-xpm --without-jpeg \
+	 --without-png --without-gif --without-tiff &&\
 	make -j16 &&\
 	make install
 	$(FINISH)

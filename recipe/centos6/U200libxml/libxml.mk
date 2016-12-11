@@ -6,7 +6,7 @@ $(SYSCON_TARGET):
 	rm -rf libxml2-* && \
 	tar zxf $(shell pwd)/libxml2-*.tar.gz && \
 	cd libxml2-* && \
-	./configure --prefix=$(SYSCON_PREFIX) \
+	./configure --prefix=$(SYSCON_PREFIX) --without-python \
 	            CFLAGS="-I$(SYSCON_PREFIX)/include" LDFLAGS="-L$(SYSCON_PREFIX)/lib" && \
 	make -j16 && \
 	make install

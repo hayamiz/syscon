@@ -2,7 +2,7 @@
 include $(SYSCON_INCLUDE)/common.mk
 
 $(SYSCON_TARGET):
-	cd /tmp && \
+	cd $(SYSCON_PREFIX) && \
 	rm -rf autoconf-* &&\
 	tar xf $(shell pwd)/autoconf-*.tar.gz && \
 	cd autoconf-* && \

@@ -2,7 +2,7 @@
 include $(SYSCON_INCLUDE)/common.mk
 
 $(SYSCON_TARGET):
-	cd /tmp && \
+	cd $(SYSCON_PREFIX) && \
 	rm -rf automake-* &&\
 	tar zxf $(shell pwd)/automake-*.tar.gz && \
 	cd automake-* && \

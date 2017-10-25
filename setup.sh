@@ -1,14 +1,16 @@
 #!/bin/bash
 
+set -e
+
 # Check pre-required tools
 if ! which make > /dev/null; then # required by su_cmd
     echo "Install 'make' command first"
     exit 1
 fi
-if ! which expect > /dev/null; then # required by su_cmd
-    echo "Install 'expect' command first"
-    # exit 1
-fi
+# if ! which expect > /dev/null; then # required by su_cmd
+#     echo "Install 'expect' command first"
+#     # exit 1
+# fi
 
 export SYSCON_ROOT=$(dirname $(readlink -f $0))
 export SYSCON_BIN="$SYSCON_ROOT/bin"
@@ -17,9 +19,11 @@ export SYSCON_INCLUDE="$SYSCON_ROOT/include"
 export SYSCON_USER=$USER
 export SYSCON_TARGET=OK.$(hostname -s)
 export SYSCON_PREFIX=${HOME}/$(hostname -s)/usr
-export SYSCON_BUILDDIR="$SYSCON_ROOT/build/$(hostname -s)"
+export SYSCON_BUILDDIR="$SYSCON_ROOT/build"
+
+mkdir -p /tmp/syscon-build
 if ! [ -d "$SYSCON_BUILDDIR" ]; then
-    mkdir -p "$SYSCON_BUILDDIR"
+    ln -s /tmp/syscon-build $SYSCON_BUILDDIR
 fi
 
 export PATH=$SYSCON_PREFIX/bin:$PATH

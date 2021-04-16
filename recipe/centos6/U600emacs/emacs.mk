@@ -3,7 +3,7 @@ include $(SYSCON_INCLUDE)/common.mk
 $(SYSCON_TARGET):
 	cd /tmp&& \
 	rm -rf emacs-*.* && \
-	tar zxf $(shell pwd)/emacs-*.*.tar.xz && \
+	tar xf $(shell pwd)/emacs-*.*.tar.xz && \
 	cd emacs-*.*&& \
 	./configure --prefix=$(SYSCON_PREFIX) \
 	  --with-x=no --with-xpm=no --with-jpeg=no \

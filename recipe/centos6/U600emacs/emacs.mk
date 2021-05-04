@@ -7,7 +7,7 @@ $(SYSCON_TARGET):
 	cd emacs-*.*&& \
 	./configure --prefix=$(SYSCON_PREFIX) \
 	  --with-x=no --with-xpm=no --with-jpeg=no \
-	 --with-png=no --with-gif=no --with-tiff=no &&\
+	 --with-png=no --with-gif=no --with-tiff=no  &&\
 	make -j16 &&\
 	make install
 	$(FINISH)
